@@ -22,16 +22,17 @@
 - **高斯平滑結果（Kernel size = 5, σ = 5）**
 - **高斯平滑結果（Kernel size = 10, σ = 5）**
 <p align="center">
-    <figure>
-        <img src="HW2_Harris_Corner_Detection/results/Gaussian smooth results/gaussian_smooth_of_sigma_and_kernal_size_5.jpg" width="300">
-        <figcaption>高斯平滑結果（Kernel size = 5, σ = 5）</figcaption>
-    </figure>
-    <figure>
-        <img src="HW2_Harris_Corner_Detection/results/Gaussian smooth results/gaussian_smooth_of_sigma_and_kernal_size_10.jpg" width="300">
-        <figcaption>高斯平滑結果（Kernel size = 10, σ = 5）</figcaption>
-    </figure>
+    <div style="display: flex; justify-content: center; align-items: center;">
+        <figure style="margin: 10px;">
+            <img src="HW2_Harris_Corner_Detection/results/Gaussian smooth results/gaussian_smooth_of_sigma_and_kernal_size_5.jpg" width="300">
+            <figcaption>高斯平滑結果（Kernel size = 5, σ = 5）</figcaption>
+        </figure>
+        <figure style="margin: 10px;">
+            <img src="HW2_Harris_Corner_Detection/results/Gaussian smooth results/gaussian_smooth_of_sigma_and_kernal_size_10.jpg" width="300">
+            <figcaption>高斯平滑結果（Kernel size = 10, σ = 5）</figcaption>
+        </figure>
+    </div>
 </p>
-
 
 #### **(2) `Sobel edge detection results`**
 **目的：** 計算影像梯度，以偵測邊緣

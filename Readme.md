@@ -13,7 +13,8 @@
 透過計算結構張量（Structure Tensor）並應用哈里斯響應函數（Harris Response），可以有效偵測角點。
 
 原始圖片 :
-![alt text](HW2_Harris_Corner_Detection/original.jpg)
+
+<img src="HW2_Harris_Corner_Detection/original.jpg" width="300">
 
 ### **實作函式**
 #### **(1) `Gaussian smooth results`**

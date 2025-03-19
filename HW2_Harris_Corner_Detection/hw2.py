@@ -35,8 +35,8 @@ if __name__ == '__main__':
 # (2) direction of gradient (Gaussian kernel size=5 and 10) (2 images)    
     
     
-    gradient_magnitude_K5,gradient_direction_K5 = sobel_edge_detection(img_filtered_K5)
-    gradient_magnitude_K10, gradient_direction_K10 = sobel_edge_detection(img_filtered_K10)
+    gradient_magnitude_K5,gradient_direction_K5 = sobel_edge_detection(img_filtered_K5,sigma)
+    gradient_magnitude_K10, gradient_direction_K10 = sobel_edge_detection(img_filtered_K10,sigma)
     gradient_magnitude_K5 =  gradient_magnitude_K5 / np.amax(gradient_magnitude_K5) * 255
     gradient_magnitude_K10 =  gradient_magnitude_K10 / np.amax(gradient_magnitude_K10) * 255
     gradient_direction_K5 =  gradient_direction_K5 / np.amax(gradient_direction_K5) * 255
@@ -55,7 +55,7 @@ if __name__ == '__main__':
 # (2) window size = 30x30 (1 image)
     
     
-    harrisim=structure_tensor(gradient_magnitude_K10, gradient_direction_K10, k)
+    harrisim=structure_tensor(gradient_magnitude_K10, gradient_direction_K10, k,sigma)
     window_size=3
     NMS_W3=NMS(harrisim,window_size,threshold)
     plt.figure();plt.gray();plt.figure(figsize=(20,10))
@@ -77,10 +77,10 @@ if __name__ == '__main__':
     img_Gray_30 = rotate(img_Gray, angle)
     img_filtered_K10_R30 = convolve(img_Gray_30, gaussian_smooth(size=10,sigma=5))
     img_filtered_K10_R30 =  img_filtered_K10_R30 / np.amax(img_filtered_K10_R30) * 255
-    gradient_magnitude_K10_R30, gradient_direction_K10_R30 = sobel_edge_detection(img_filtered_K10_R30)
+    gradient_magnitude_K10_R30, gradient_direction_K10_R30 = sobel_edge_detection(img_filtered_K10_R30,sigma)
     gradient_magnitude_K10_R30 =  gradient_magnitude_K10_R30 / np.amax(gradient_magnitude_K10_R30) * 255
     gradient_direction_K10_R30 =  gradient_direction_K10_R30 / np.amax(gradient_magnitude_K10_R30) * 255
-    harrisim_R30=structure_tensor(gradient_magnitude_K10_R30, gradient_direction_K10_R30, k)
+    harrisim_R30=structure_tensor(gradient_magnitude_K10_R30, gradient_direction_K10_R30, k,sigma)
     where_are_nan = np.isnan(harrisim_R30)
     harrisim_R30[where_are_nan] = 0
     window_size=3
@@ -96,10 +96,10 @@ if __name__ == '__main__':
     img_Gray_scaled = cv2.resize(img_Gray,None,fx=0.5, fy=0.5, interpolation = cv2.INTER_LINEAR)
     img_filtered_K10_scaled = convolve(img_Gray_scaled, gaussian_smooth(size=10,sigma=5))
     img_filtered_K10_scaled =  img_filtered_K10_scaled / np.amax(img_filtered_K10_scaled) * 255
-    gradient_magnitude_K10_scaled, gradient_direction_K10_scaled = sobel_edge_detection(img_filtered_K10_scaled)
+    gradient_magnitude_K10_scaled, gradient_direction_K10_scaled = sobel_edge_detection(img_filtered_K10_scaled,sigma)
     gradient_magnitude_K10_scaled =  gradient_magnitude_K10_scaled / np.amax(gradient_magnitude_K10_scaled) * 255
     gradient_direction_K10_scaled =  gradient_direction_K10_scaled / np.amax(gradient_direction_K10_scaled) * 255
-    harrisim_scaled=structure_tensor(gradient_magnitude_K10_scaled, gradient_direction_K10_scaled, k)
+    harrisim_scaled=structure_tensor(gradient_magnitude_K10_scaled, gradient_direction_K10_scaled, k,sigma)
     NMS_W3_scaled=NMS(harrisim_scaled,window_size,threshold)
     plt.figure();plt.gray();plt.figure(figsize=(20,10))
     plt.imshow(img_Gray_scaled)

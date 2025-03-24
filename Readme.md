@@ -15,7 +15,9 @@
 
 ### **原始圖片**
 
-<img src="HW2_Harris_Corner_Detection/original.jpg" width="300">
+<p align="center">
+    <img src="HW2_Harris_Corner_Detection/original.jpg" width="300">
+</p>
 
 ---
 
@@ -33,17 +35,25 @@
 
 #### **(2) Sobel edge detection results**
 **目的：** 計算影像梯度，以偵測邊緣。
-- **梯度大小（Kernel size = 5）**
-- **梯度大小（Kernel size = 10）**
-- **梯度方向（Kernel size = 5）**
-- **梯度方向（Kernel size = 10）**
 
-<p align="center">
-    <img src="HW2_Harris_Corner_Detection/results/Sobel edge detection results/magnitude_of_gradient_kernel_size_5.jpg" width="300">
-    <img src="HW2_Harris_Corner_Detection/results/Sobel edge detection results/magnitude_of_gradient_kernel_size_10.jpg" width="300">
-    <img src="HW2_Harris_Corner_Detection/results/Sobel edge detection results/direction_of_gradient_kernel_size_5.jpg" width="300">
-    <img src="HW2_Harris_Corner_Detection/results/Sobel edge detection results/direction_of_gradient_kernel_size_10.jpg" width="300">
-</p>
+<table align="center">
+    <tr>
+        <td align="center"><b>梯度大小（Kernel size = 5）</b></td>
+        <td align="center"><b>梯度大小（Kernel size = 10）</b></td>
+    </tr>
+    <tr>
+        <td align="center"><img src="HW2_Harris_Corner_Detection/results/Sobel edge detection results/magnitude_of_gradient_kernel_size_5.jpg" width="300"></td>
+        <td align="center"><img src="HW2_Harris_Corner_Detection/results/Sobel edge detection results/magnitude_of_gradient_kernel_size_10.jpg" width="300"></td>
+    </tr>
+    <tr>
+        <td align="center"><b>梯度方向（Kernel size = 5）</b></td>
+        <td align="center"><b>梯度方向（Kernel size = 10）</b></td>
+    </tr>
+    <tr>
+        <td align="center"><img src="HW2_Harris_Corner_Detection/results/Sobel edge detection results/direction_of_gradient_kernel_size_5.jpg" width="300"></td>
+        <td align="center"><img src="HW2_Harris_Corner_Detection/results/Sobel edge detection results/direction_of_gradient_kernel_size_10.jpg" width="300"></td>
+    </tr>
+</table>
 
 #### **(3) Structure tensor + NMS results**
 **目的：** 計算結構張量並應用非極大值抑制，以突顯關鍵角點。
@@ -70,6 +80,3 @@
 <p align="center">
     <img src="HW2_Harris_Corner_Detection/results/Final results of scaling/Scaling.jpg" width="300">
 </p>
-
-
-

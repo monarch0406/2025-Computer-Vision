@@ -11,12 +11,20 @@ def gaussian_smooth(size, sigma):
     img =  np.exp(-((x**2 + y**2) / (2.0*sigma**2))) * normal
     return img
 
-def sobel_edge_detection(im,sigma):
-    gradient_magnitude=np.zeros(im.shape)
-    filters.gaussian_filter(im,(sigma,sigma),(0,1),gradient_magnitude)
-    gradient_direction=np.zeros(im.shape)
-    filters.gaussian_filter(im,(sigma,sigma),(1,0),gradient_direction)
-    return  (gradient_magnitude, gradient_direction)
+import numpy as np
+from scipy import ndimage
+
+def sobel_edge_detection(im, sigma):
+    im_smoothed = ndimage.gaussian_filter(im, sigma)
+
+    gx = ndimage.sobel(im_smoothed, axis=1, mode='reflect')
+    gy = ndimage.sobel(im_smoothed, axis=0, mode='reflect')
+
+    gradient_magnitude = np.hypot(gx, gy)  # 梯度大小
+    gradient_direction = np.arctan2(gy, gx)  # 梯度方向
+
+    return gradient_magnitude, gradient_direction
+
 
 
 def structure_tensor(gradient_magnitude, gradient_direction, k, sigma):

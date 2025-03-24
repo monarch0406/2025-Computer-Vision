@@ -103,47 +103,40 @@ def rotate(image, angle):
 ## **6. Output Results**
 The `results` folder contains five subdirectories with generated images:
 
-### **1. Gaussian Smooth Results**
-- `gaussian_smooth_of_sigma_and_kernal_size_5.jpg`
-- `gaussian_smooth_of_sigma_and_kernal_size_10.jpg`
-
-### **2. Sobel Edge Detection Results**
-- `magnitude_of_gradient_kernel_size_5.jpg`
-- `magnitude_of_gradient_kernel_size_10.jpg`
-- `direction_of_gradient_kernel_size_5.jpg`
-- `direction_of_gradient_kernel_size_10.jpg`
-
-### **3. Structure Tensor + NMS Results**
-- `NMS_window_size_3.jpg`
-- `NMS_window_size_30.jpg`
-
-### **4. Final Results of Rotation**
-- `Rotate_30.jpg`
-
-### **5. Final Results of Scaling**
-- `Scaling.jpg`
-
 ## **7. Example Image Results**
-Below are sample output images:
+Below are sample output images with their corresponding parameter descriptions:
 
 ### **Gaussian Smooth Results**
-![Gaussian Smooth](results/Gaussian%20smooth%20results/gaussian_smooth_of_sigma_and_kernal_size_5.jpg)
+- **Gaussian Smooth (Sigma = 5, Kernel Size = 5)**
+  ![Gaussian Smooth](results/Gaussian%20smooth%20results/gaussian_smooth_of_sigma_and_kernal_size_5.jpg)
+- **Gaussian Smooth (Sigma = 5, Kernel Size = 10)**
+  ![Gaussian Smooth](results/Gaussian%20smooth%20results/gaussian_smooth_of_sigma_and_kernal_size_10.jpg)
 
 ### **Sobel Edge Detection - Magnitude**
-![Sobel Magnitude](results/Sobel%20edge%20detection%20results/magnitude_of_gradient_kernel_size_5.jpg)
+- **Magnitude of Gradient (Kernel Size = 5)**
+  ![Sobel Magnitude](results/Sobel%20edge%20detection%20results/magnitude_of_gradient_kernel_size_5.jpg)
+- **Magnitude of Gradient (Kernel Size = 10)**
+  ![Sobel Magnitude](results/Sobel%20edge%20detection%20results/magnitude_of_gradient_kernel_size_10.jpg)
 
 ### **Sobel Edge Detection - Direction**
-![Sobel Direction](results/Sobel%20edge%20detection%20results/direction_of_gradient_kernel_size_5.jpg)
+- **Direction of Gradient (Kernel Size = 5)**
+  ![Sobel Direction](results/Sobel%20edge%20detection%20results/direction_of_gradient_kernel_size_5.jpg)
+- **Direction of Gradient (Kernel Size = 10)**
+  ![Sobel Direction](results/Sobel%20edge%20detection%20results/direction_of_gradient_kernel_size_10.jpg)
 
 ### **Structure Tensor + NMS Results**
-![NMS](results/Structure%20tensor%20+%20NMS%20results/NMS_window_size_3.jpg)
+- **NMS with Window Size = 3x3**
+  ![NMS](results/Structure%20tensor%20+%20NMS%20results/NMS_window_size_3.jpg)
+- **NMS with Window Size = 30x30**
+  ![NMS](results/Structure%20tensor%20+%20NMS%20results/NMS_window_size_30.jpg)
 
 ### **Final Rotation (30 Degrees)**
-![Rotation](results/Final%20results%20of%20rotating/Rotate_30.jpg)
+- **Rotated Image (30 Degrees)**
+  ![Rotation](results/Final%20results%20of%20rotating/Rotate_30.jpg)
 
 ### **Final Scaling (0.5x)**
-![Scaling](results/Final%20results%20of%20scaling/Scaling.jpg)
+- **Scaled Image (0.5x the Original Size)**
+  ![Scaling](results/Final%20results%20of%20scaling/Scaling.jpg)
 
 ## **8. Conclusion**
 This assignment successfully implements Harris Corner Detection with Gaussian smoothing, Sobel edge detection, structure tensor computation, Non-Maximum Suppression, image rotation, and scaling. The results demonstrate how different transformations impact corner detection and image processing.
-

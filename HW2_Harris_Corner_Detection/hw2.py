@@ -44,7 +44,7 @@ if __name__ == '__main__':
     save_img_path3 = os.path.join(r'HW2_Harris_Corner_Detection\results\Sobel edge detection results', 'magnitude_of_gradient_kernel_size_5.jpg')
     save_img_path4 = os.path.join(r'HW2_Harris_Corner_Detection\results\Sobel edge detection results', 'magnitude_of_gradient_kernel_size_10.jpg')
     save_img_path5 = os.path.join(r'HW2_Harris_Corner_Detection\results\Sobel edge detection results', 'direction_of_gradient_kernel_size_5.jpg')
-    save_img_path6 = os.path.join(r'HW2_Harris_Corner_Detection\results\Sobel edge detection results', 'derection_of_gradient_kernel_size_10.jpg')
+    save_img_path6 = os.path.join(r'HW2_Harris_Corner_Detection\results\Sobel edge detection results', 'direction_of_gradient_kernel_size_10.jpg')
     cv2.imwrite(save_img_path3, gradient_magnitude_K5)
     cv2.imwrite(save_img_path4, gradient_magnitude_K10)
     cv2.imwrite(save_img_path5, gradient_direction_K5)

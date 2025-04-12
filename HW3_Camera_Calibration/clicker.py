@@ -9,7 +9,7 @@ num_points = rows * cols
 
 cnt = 0
 # change input image path here
-img = cv2.imread('data/chessboard_2.jpg')
+img = cv2.imread('HW3_Camera_Calibration\data\image2.jpeg')
 height, width, _ = img.shape
 
 def getxy(event, x, y, flags, param):
@@ -32,4 +32,5 @@ cv2.imshow('image', img)
 cv2.waitKey(0)
 
 # change output path here
-np.save('Point2D', np.asarray(mouse))
+# 存檔位置
+np.save('HW3_Camera_Calibration/image3.npy', np.asarray(mouse))

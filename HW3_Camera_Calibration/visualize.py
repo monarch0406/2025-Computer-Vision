@@ -1,69 +1,100 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import math
+
 from mpl_toolkits.mplot3d import Axes3D
 from mpl_toolkits.mplot3d.art3d import Poly3DCollection
+   
+def draw_camera(ax, R, pos, color):
+    leftTopCorner = [ -0.2, 0.2, -1 ] @ R
+    leftTopCorner = leftTopCorner / np.linalg.norm(leftTopCorner, 2)*4 + pos
 
-# 畫相機外觀 (像小金字塔)
-def draw_camera(ax, R, T, color, label):
-    camera_size = 1.5
-    center = T.reshape(3)
+    leftBotCorner = [ -0.2, -0.2, -1 ] @ R
+    leftBotCorner = leftBotCorner / np.linalg.norm(leftBotCorner, 2)*4 + pos
 
-    # 定義四個角落
-    corners = np.array([
-        [-0.5, -0.5, 1],
-        [ 0.5, -0.5, 1],
-        [ 0.5,  0.5, 1],
-        [-0.5,  0.5, 1]
-    ]) * camera_size
+    rightTopCorner = [ 0.2, 0.2, -1 ] @ R
+    rightTopCorner = rightTopCorner / np.linalg.norm(rightTopCorner, 2)*4 + pos
 
-    # 旋轉+平移
-    corners = (R @ corners.T).T + center
+    rightBotCorner = [ 0.2, -0.2, -1 ] @ R
+    rightBotCorner = rightBotCorner / np.linalg.norm(rightBotCorner, 2)*4 + pos
 
-    # 畫四個面
-    for i in range(4):
-        verts = [ [center, corners[i], corners[(i+1)%4]] ]
-        ax.add_collection3d(Poly3DCollection(verts, facecolors=color, linewidths=0.5, edgecolors='k', alpha=0.7))
+    leftTriangle = np.concatenate([pos, leftTopCorner, leftBotCorner], axis=0)
+    topTriangle = np.concatenate([pos, leftTopCorner, rightTopCorner], axis=0)
+    rightTriangle = np.concatenate([pos, rightTopCorner, rightBotCorner], axis=0)
+    botTriangle = np.concatenate([pos, leftBotCorner, rightBotCorner], axis=0)
 
-    # 顯示文字
-    ax.text(center[0], center[1], center[2]+0.5, label, color=color, fontsize=10)
+    verts = [list(leftTriangle)]
+    ax.add_collection3d(Poly3DCollection(verts, facecolors=color))
+    
+    verts = [list(topTriangle)]
+    ax.add_collection3d(Poly3DCollection(verts, facecolors=color))
+    
+    verts = [list(rightTriangle)]
+    ax.add_collection3d(Poly3DCollection(verts, facecolors=color))
+    
+    verts = [list(botTriangle)]
+    ax.add_collection3d(Poly3DCollection(verts, facecolors=color))
 
+    
 def visualize(pts, R1, T1, R2, T2, save_name):
+    '''
+    Input:
+        pts: 36x3 3D points
+        R1: 3x3 rotation matrix of image 1
+        T1: 3x1 translation vector of image 1
+        R2: 3x3 roatation matrix of image 2
+        T2: 3x1 translation vector of image 2
+    
+    This function will display a chessboard and two cameras.
+    '''
+def visualize(pts, R1, T1, R2, T2, save_name):
+    '''
+    Input:
+        pts: 36x3 3D points
+        R1: 3x3 rotation matrix of image 1
+        T1: 3x1 translation vector of image 1
+        R2: 3x3 rotation matrix of image 2
+        T2: 3x1 translation vector of image 2
+    '''
     fig = plt.figure()
-    ax = fig.add_subplot(111, projection='3d')
+    ax = fig.add_subplot(projection='3d')
+    
+    ax.set_xlim3d(-10, 5)
+    ax.set_ylim3d(10, -5)
+    ax.set_zlim3d(-5, 10)
 
     ax.set_xlabel('X')
     ax.set_ylabel('Y')
     ax.set_zlabel('Z')
 
-    ax.set_xlim(-10, 10)
-    ax.set_ylim(-10, 10)
-    ax.set_zlim(-5, 15)
+    cameraPoseVector1 = R1.T @ [0, 0, 1]
+    cameraPoseVector1 /= np.linalg.norm(cameraPoseVector1)
+    cameraPoseVector2 = R2.T @ [0, 0, 1]
+    cameraPoseVector2 /= np.linalg.norm(cameraPoseVector2)
 
-    # 畫黑白棋盤格
+    angle = math.degrees(math.acos(np.clip(np.dot(cameraPoseVector1, cameraPoseVector2), -1, 1)))
+    print('Angle between two cameras: ', angle)
+
+    cameraPos1 = -T1.T @ R1
+    cameraPos2 = -T2.T @ R2
+
     for r in range(1, 9):
         for c in range(1, 4):
-            idx = [r*4+c-5, r*4+c-4, r*4+c, r*4+c-1]
-            fourCorner = pts[idx]
-            color = 'black' if (r+c)%2 == 0 else 'white'
-            ax.add_collection3d(Poly3DCollection([fourCorner], facecolors=color, linewidths=0.2, edgecolors='k', alpha=0.9))
+            fourCorner = np.concatenate((pts[r*4+c-5, :], pts[r*4+c-4, :], pts[r*4+c, :], pts[r*4+c-1, :]))
+            fourCorner.resize((4,3))
+            color = 'black' if r%2 == c%2 else 'white'
+            verts = [list(fourCorner)]
+            ax.add_collection3d(Poly3DCollection(verts, facecolors=color))
 
-    # 畫相機
-    cameraPos1 = (-R1.T @ T1).reshape(3)
-    cameraPos2 = (-R2.T @ T2).reshape(3)
+    draw_camera(ax, R1, cameraPos1, 'blue')
+    draw_camera(ax, R2, cameraPos2, 'red')
 
-    draw_camera(ax, R1.T, cameraPos1, 'red', 'View 1')
-    draw_camera(ax, R2.T, cameraPos2, 'blue', 'View 2')
-
-    # 算相機夾角
-    v1 = R1.T @ np.array([0, 0, 1])
-    v2 = R2.T @ np.array([0, 0, 1])
-    v1 /= np.linalg.norm(v1)
-    v2 /= np.linalg.norm(v2)
-    angle = math.degrees(math.acos(np.clip(np.dot(v1, v2), -1, 1)))
-    print('Angle between two cameras: ', angle)
+    import os
+    if not os.path.exists('./output'):
+        os.makedirs('./output')
 
     plt.savefig('./output/' + save_name + '.png')
     plt.show()
-    plt.close(fig)
 
+
+    

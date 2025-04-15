@@ -9,7 +9,7 @@ num_points = rows * cols
 
 cnt = 0
 # change input image path here
-img = cv2.imread('HW3_Camera_Calibration\data\image2.jpeg')
+img = cv2.imread('HW3_Camera_Calibration\data\image3.jpg')
 height, width, _ = img.shape
 
 def getxy(event, x, y, flags, param):

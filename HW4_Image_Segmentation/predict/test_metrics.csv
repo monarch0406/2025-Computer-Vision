@@ -1,0 +1,11 @@
+filename,PSNR,IoU,out_path
+0401.png,16.45,0.975,/home/dslab/Monarch/Computer_Vision_HW4/predict/0401.png
+0402.png,13.02,0.979,/home/dslab/Monarch/Computer_Vision_HW4/predict/0402.png
+0403.png,13.35,0.819,/home/dslab/Monarch/Computer_Vision_HW4/predict/0403.png
+0404.png,15.47,0.952,/home/dslab/Monarch/Computer_Vision_HW4/predict/0404.png
+0405.png,13.72,0.932,/home/dslab/Monarch/Computer_Vision_HW4/predict/0405.png
+0406.png,15.36,0.977,/home/dslab/Monarch/Computer_Vision_HW4/predict/0406.png
+0407.png,14.42,0.865,/home/dslab/Monarch/Computer_Vision_HW4/predict/0407.png
+0408.png,11.2,0.72,/home/dslab/Monarch/Computer_Vision_HW4/predict/0408.png
+0409.png,9.48,0.677,/home/dslab/Monarch/Computer_Vision_HW4/predict/0409.png
+0410.png,14.99,0.956,/home/dslab/Monarch/Computer_Vision_HW4/predict/0410.png
